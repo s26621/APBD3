@@ -5,3 +5,8 @@ public class Program{
     {
     }
 }
+/*
+-> jak ładujemuy kontenery to nie musimy ich przestawiać, tylko masa ma się zgadzać
+-> termin do następnych zajęć
+-> repozytorium na githubie
+*/

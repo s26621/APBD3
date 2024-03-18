@@ -6,9 +6,10 @@ public abstract class Kontener
     protected double masaLadunku;
     protected int masaKontenera;
     protected int glebokosc;
-    protected int numer;
+    protected string numer;
     protected static int ktoryKontener = 1;
     protected int maksLadownosc;
+    protected string rodzajKontenera;
 
     public Kontener(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc)
     {
@@ -17,7 +18,7 @@ public abstract class Kontener
         this.glebokosc = glebokosc;
         this.maksLadownosc = maksLadownosc;
         masaLadunku = 0;
-        numer = ktoryKontener++;
+        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
 
     public int Wysokosc
@@ -52,7 +53,7 @@ public abstract class Kontener
         set => masaLadunku = value;
     }
 
-    private int Numer
+    private string Numer
     {
         get => numer;
         set => numer = value;
@@ -76,6 +77,12 @@ public abstract class Kontener
     {
         masaLadunku -= ile;
         if (masaLadunku < 0) masaLadunku = 0;
+    }
+
+    public override string ToString()
+    {
+        return "Kontener " + numer + ", przewożący "+masaLadunku+"kg ladunku. " +
+               "Wysokosc = "+wysokosc+", glebokosc = "+glebokosc+".";
     }
 }
 

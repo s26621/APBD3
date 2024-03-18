@@ -4,6 +4,7 @@ public class KontenerNaPlyny : Kontener, IHazardNotifier
 {
     public KontenerNaPlyny(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc)
     {
+        rodzajKontenera = "L";
     }
 
     public void Zaladuj(int waga)
@@ -18,7 +19,7 @@ public class KontenerNaPlyny : Kontener, IHazardNotifier
         }
     }
 
-    public string NotyfikacjaTekstowa(string typSytuacji, int numer)
+    public string NotyfikacjaTekstowa(string typSytuacji, string numer)
     {
         return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze numer " + numer;
     }

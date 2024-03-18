@@ -2,5 +2,5 @@
 
 public interface IHazardNotifier
 {
-    public string NotyfikacjaTekstowa(string typSytuacji, int numer);
+    public string NotyfikacjaTekstowa(string typSytuacji, string numer);
 }

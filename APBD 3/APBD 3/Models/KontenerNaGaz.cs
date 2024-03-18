@@ -7,6 +7,7 @@ public class KontenerNaGaz : Kontener, IHazardNotifier
     public KontenerNaGaz(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, int cisnienie) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc)
     {
         this._cisnienie = cisnienie;
+        rodzajKontenera = "G";
     }
 
     public int Cisnienie
@@ -26,7 +27,7 @@ public class KontenerNaGaz : Kontener, IHazardNotifier
             NotyfikacjaTekstowa("proba wyladowania gazu ponad norme", numer);
     }
     
-    public string NotyfikacjaTekstowa(string typSytuacji, int numer)
+    public string NotyfikacjaTekstowa(string typSytuacji, string numer)
     {
         return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze numer " + numer;
     }

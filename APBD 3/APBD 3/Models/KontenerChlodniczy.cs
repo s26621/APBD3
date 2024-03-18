@@ -15,6 +15,7 @@ public class KontenerChlodniczy : Kontener
     public KontenerChlodniczy(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, double temperatura) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc)
     {
         this.temperatura = temperatura;
+        rodzajKontenera = "C";
         rodzajProduktu = "nic";
     }
 
@@ -34,6 +35,23 @@ public class KontenerChlodniczy : Kontener
         }
         
         masaLadunku += waga;
+    }
+
+    public void Wyladuj()
+    {
+        base.Wyladuj();
+        rodzajProduktu = "nic";
+    }
+    
+    public void Wyladuj(int ile)
+    {
+        base.Wyladuj(ile);
+        rodzajProduktu = "nic";
+    }
+
+    public override string ToString()
+    {
+        return base.ToString()+"Przewozi w srodku "+rodzajProduktu+".";
     }
 
     public string RodzajProduktu

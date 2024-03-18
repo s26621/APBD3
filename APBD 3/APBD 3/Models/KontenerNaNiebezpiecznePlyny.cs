@@ -4,7 +4,7 @@ public class KontenerNaNiebezpiecznePlyny : KontenerNaPlyny, IHazardNotifier
 {
     public KontenerNaNiebezpiecznePlyny(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc)
     {
-        
+        rodzajKontenera = "CN";
     }
     public void Zaladuj(int waga)
     {
