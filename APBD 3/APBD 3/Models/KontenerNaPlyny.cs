@@ -10,7 +10,16 @@ public class KontenerNaPlyny : Kontener, IHazardNotifier
     {
         if (masaLadunku + waga > maksLadownosc * 0.9)
         {
-            // tutaj wyswietlamy informacje
+            NotyfikacjaTekstowa("przekroczenie bezpiecznego ladunku", this.numer);
         }
+        else
+        {
+            masaLadunku += waga;
+        }
+    }
+
+    public string NotyfikacjaTekstowa(string typSytuacji, int numer)
+    {
+        return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze numer " + numer;
     }
 }
