@@ -3,7 +3,7 @@
 public abstract class Kontener
 {
     protected int wysokosc;
-    protected int masaLadunku;
+    protected double masaLadunku;
     protected int masaKontenera;
     protected int glebokosc;
     protected int numer;
@@ -46,7 +46,7 @@ public abstract class Kontener
 
  
 
-    public int MasaLadunku
+    public double MasaLadunku
     {
         get => masaLadunku;
         set => masaLadunku = value;
@@ -72,7 +72,7 @@ public abstract class Kontener
         masaLadunku = 0;
     }
 
-    public void Wyladuj(int ile)
+    public void Wyladuj(double ile)
     {
         masaLadunku -= ile;
         if (masaLadunku < 0) masaLadunku = 0;
