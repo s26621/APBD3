@@ -2,7 +2,7 @@
 
 public class KontenerChlodniczy : Kontener
 {
-    private static Dictionary<string, double> listaTemperatur = new Dictionary<string, double>()
+    public static Dictionary<string, double> listaTemperatur = new Dictionary<string, double>()
     {
         {"Bananas",13.3}, {"Chocolate",18}, {"Fish", 2}, 
         {"Meat",-15}, {"Ice cream", -18}, {"Frozen pizza", -30},
@@ -12,11 +12,11 @@ public class KontenerChlodniczy : Kontener
     private string rodzajProduktu;
     private double temperatura;
 
-    public KontenerChlodniczy(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, double temperatura) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc)
+    public KontenerChlodniczy(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, double temperatura, string rodzajProduktu) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc)
     {
         this.temperatura = temperatura;
         rodzajKontenera = "C";
-        rodzajProduktu = "nic";
+        this.rodzajProduktu = rodzajProduktu;
     }
 
     
@@ -25,12 +25,9 @@ public class KontenerChlodniczy : Kontener
     {
         if (masaLadunku + waga> MaksLadownosc)
             throw new OverfillException("Masa ladunku przekracza maksymalna pojemnosc! Nie zaladowano statku.");
-        if (rodzajProduktu=="nic")
+        if (this.rodzajProduktu!=rodzajProduktu)
         {
-            this.rodzajProduktu = rodzajProduktu;
-        }else if (this.rodzajProduktu!=rodzajProduktu)
-        {
-            Console.WriteLine("W tym wagonie jest zaladowany produkt: "+this.rodzajProduktu+", nie mozna wsadzic tam "+rodzajProduktu+"!");
+            Console.WriteLine("W tym kontenerze przewozi sie produkt: "+this.rodzajProduktu+", nie mozna wsadzic tam produktu "+rodzajProduktu+"!");
             return;
         }
         
@@ -40,13 +37,11 @@ public class KontenerChlodniczy : Kontener
     public void Wyladuj()
     {
         base.Wyladuj();
-        rodzajProduktu = "nic";
     }
     
     public void Wyladuj(int ile)
     {
         base.Wyladuj(ile);
-        rodzajProduktu = "nic";
     }
 
     public override string ToString()
@@ -66,7 +61,7 @@ public class KontenerChlodniczy : Kontener
         set
         {
             double minTemp = listaTemperatur[rodzajProduktu];
-            if(rodzajProduktu!="nic" && value < minTemp)
+            if(value < minTemp)
                 Console.WriteLine("Ta temperatura bylaby za niska dla produktu "+rodzajProduktu+
                                   ", ktory wymaga temperatury conajmniej "+minTemp+"stopni!");
             else
