@@ -53,36 +53,43 @@ public abstract class Kontener
         set => masaLadunku = value;
     }
 
-    private string Numer
+    public string Numer
     {
         get => numer;
         set => numer = value;
     }
 
-    public void Zaladuj(int waga)
+    public void Zaladuj()
     {
+        Console.WriteLine("Ile kg ladunku chcesz zaladowac? Aktualnie ten kontener moze pomiescic jeszcze"+(MaksLadownosc-MasaLadunku)+"kg.");
+        int waga = int.Parse(Console.ReadLine());
         if (masaLadunku + waga> MaksLadownosc)
-                throw new OverfillException("Masa ladunku przekracza maksymalna pojemnosc! Nie zaladowano statku.");
+                throw new OverfillException("Masa ladunku przekracza maksymalna pojemnosc! Nie zaladowano kontenera.");
             
         masaLadunku += waga;
-            
+        Console.WriteLine("Pomyslnie zaladowano kontener!");
     }
 
     public void Wyladuj()
     {
         masaLadunku = 0;
+        Console.WriteLine("Pomyslnie wyladowano ladunek!");
     }
 
     public void Wyladuj(double ile)
     {
         masaLadunku -= ile;
-        if (masaLadunku < 0) masaLadunku = 0;
+        if (masaLadunku < 0)
+        {
+            Console.WriteLine("Podano za duza liczbe! Kontener zostanie wyladowany do zera");
+            masaLadunku = 0;
+        }
     }
 
     public override string ToString()
     {
-        return "Kontener " + numer + ", przewożący "+masaLadunku+"kg ladunku. " +
-               "Wysokosc = "+wysokosc+", glebokosc = "+glebokosc+".";
+        return "Kontener " + numer + " o wysokosci "+wysokosc+
+               "cm i glebokosci "+glebokosc+"cm. Ladunek = "+masaLadunku+"\\"+maksLadownosc+"kg";
     }
 }
 

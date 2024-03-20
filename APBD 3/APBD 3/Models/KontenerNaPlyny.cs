@@ -21,6 +21,6 @@ public class KontenerNaPlyny : Kontener, IHazardNotifier
 
     public string NotyfikacjaTekstowa(string typSytuacji, string numer)
     {
-        return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze numer " + numer;
+        return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze " + numer+". Operacja nie powiodla sie.";
     }
 }

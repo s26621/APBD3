@@ -22,6 +22,7 @@ public class Kontenerowiec
 
     public void Zaladuj(Kontener kontener)
     {
+        
         if (aktualnyUdzwig + (kontener.MasaKontenera + kontener.MasaLadunku)*0.001 > maksymalnyUdzwig)
         {
             Console.WriteLine("Kontener przekroczyl maksymalny udzwig statku. " +
@@ -36,15 +37,23 @@ public class Kontenerowiec
         {
             kontenery.Add(kontener);
             aktualnyUdzwig += (kontener.MasaKontenera + kontener.MasaLadunku) * 0.001;
+            Console.WriteLine("Pomyslnie zaladowano kontener"+kontener.Numer+"!");
         }
+
     }
 
-    public void Zaladuj(List<Kontener> kontenery)
+    public int Zaladuj(List<Kontener> kontenery)
     {
+        int ile = 0;
         foreach (var kontener in kontenery)
         {
+            int staryRozmiar = this.kontenery.Count;
             Zaladuj(kontener);
+            if (this.kontenery.Count==staryRozmiar) break;
+            ile++;
         }
+        Console.WriteLine("Pomyslnie dodano "+ile+" na "+kontenery.Count+" kontenerow.");
+        return ile;
     }
 
     public Kontener Wyladuj(int ktory)

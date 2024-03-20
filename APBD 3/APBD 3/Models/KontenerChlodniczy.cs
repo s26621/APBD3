@@ -21,8 +21,12 @@ public class KontenerChlodniczy : Kontener
 
     
     
-    public void Zaladuj(int waga, string rodzajProduktu)
+    public void Zaladuj()
     {
+        Console.WriteLine("Ile kg ladunku chcesz zaladowac? Aktualnie ten kontener moze pomiescic jeszcze"+(MaksLadownosc-MasaLadunku)+"kg.");
+        int waga = int.Parse(Console.ReadLine());
+        Console.WriteLine("Jaki rodzaj ladunku chcesz zaladowac?");
+        string rodzajProduktu = Console.ReadLine();
         if (masaLadunku + waga> MaksLadownosc)
             throw new OverfillException("Masa ladunku przekracza maksymalna pojemnosc! Nie zaladowano statku.");
         if (this.rodzajProduktu!=rodzajProduktu)
@@ -33,16 +37,7 @@ public class KontenerChlodniczy : Kontener
         
         masaLadunku += waga;
     }
-
-    public void Wyladuj()
-    {
-        base.Wyladuj();
-    }
     
-    public void Wyladuj(int ile)
-    {
-        base.Wyladuj(ile);
-    }
 
     public override string ToString()
     {

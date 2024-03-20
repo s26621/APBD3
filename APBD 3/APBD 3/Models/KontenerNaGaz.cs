@@ -19,6 +19,8 @@ public class KontenerNaGaz : Kontener, IHazardNotifier
     public void Wyladuj()
     {
         this.masaLadunku = maksLadownosc * 0.05;
+        Console.WriteLine("Trzeba bylo zostawic 5% ze wzgledu na " +
+                          "reguly bezpieczenstwa dotyczace kontenerow na gaz.");
     }
 
     public void Wyladuj(double ile)
@@ -29,6 +31,6 @@ public class KontenerNaGaz : Kontener, IHazardNotifier
     
     public string NotyfikacjaTekstowa(string typSytuacji, string numer)
     {
-        return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze numer " + numer;
+        return "Zaszla niebezpieczna sytuacja: " + typSytuacji + " w kontenerze " + numer+". Operacja nie powiodla sie.";
     }
 }
