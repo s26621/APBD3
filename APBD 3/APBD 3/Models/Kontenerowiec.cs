@@ -81,8 +81,10 @@ public class Kontenerowiec
 
     public override string ToString()
     {
-        if (kontenery.Count == 0) return "Kontenerowiec " + nazwa + " aktualnie nic nie przewozi.";
-        return "Kontenerowiec " + nazwa + " aktualnie przewozi nastepujace kontenery:" + kontenery.ToString();
+        String s = "Kontenerowiec " + nazwa + " ma maksymalna predkosc "+maksymalnaPredkosc+" wezlow, " +
+                   "aktualnie przewozi "+kontenery.Count + " kontenerow na maksymalne "+maksKontenery+" o wadze "+aktualnyUdzwig+"kg na maksymalne "+maksymalnyUdzwig+"kg.";
+        if(kontenery.Count > 0 ) return s + " Aktualnie przewozi nastepujace kontenery:" + kontenery;
+        return s;
     }
 
     public List<Kontener> Kontenery

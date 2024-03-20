@@ -21,10 +21,9 @@ public class Program{
                            "7  ->  rozladuj kontener w magazynie;\n" +
                            "8  ->  zamien kontenery miejscami;\n" +
                            "9  ->  przenies kontener na inny statek;\n" +
-                           "10 ->  wypisz informacje o danym kontenerze;\n" +
-                           "11 ->  wypisz informacje o statku i jego ladunku;\n" +
-                           "12 ->  wyswietl liste kontenerow w magazynie;\n" +
-                           "13 ->  wyjdz z programu.";
+                           "10 ->  wypisz informacje o statkach;\n" +
+                           "11 ->  wyswietl liste kontenerow w magazynie;\n" +
+                           "12 ->  wyjdz z programu.";
         
         Console.WriteLine("Witamy w cokolwiek to jest! Masz do dyspozycji trzy kontenerowce: "+kontenerowce.ToString());
         string polecenie;
@@ -55,7 +54,15 @@ public class Program{
                 case "3":
                 {
                     Console.WriteLine("Do ktorego z koneterow chcesz zaladowac? Podaj indeks liczac od zera.\n"+magazynKontenerow);
-                    magazynKontenerow[int.Parse(Console.ReadLine())].Zaladuj();
+                    try
+                    {
+                        magazynKontenerow[int.Parse(Console.ReadLine())].Zaladuj();
+
+                    }
+                    catch (OverfillException)
+                    {
+                        Console.WriteLine("Operacja nie ppwiodla sie.");
+                    }
                     break;
                 }
                 case "4":
@@ -144,6 +151,49 @@ public class Program{
                     Console.WriteLine("Pomyslnie zamieniono kontenery miejscami!");
                     break;
                 }
+                case "9":
+                {
+                    Console.WriteLine("Z ktorego kontenerowca chcesz przeniesc kontener? Podaj indeks liczac od zera."+kontenerowce);
+                    Kontenerowiec kontenerowiecZ = kontenerowce[int.Parse(Console.ReadLine())];
+                    if (kontenerowiecZ.Kontenery.Count == 0)
+                    {
+                        Console.WriteLine("Ten kontener nie ma zadnych kontenerow! Operacja nie powiodla sie.");
+                        break;
+                    }
+                    Console.WriteLine("Ktory kontener chcesz przeniesc? Podaj indeks liczac od zera.\n"+kontenerowiecZ.Kontenery);
+                    int indeksKontenera = int.Parse(Console.ReadLine());
+                    Kontener kontener = kontenerowiecZ.Kontenery[indeksKontenera];
+                    
+                    Console.WriteLine("Na ktory kontenerowiec chcesz przeniesc ten kontener? Podaj indeks liczac od zera.\n"+kontenerowce);
+                    Kontenerowiec kontenerowiecDo = kontenerowce[int.Parse(Console.ReadLine())];
+                    if (kontenerowiecDo.Kontenery.Count == kontenerowiecDo.MaksKontenery)
+                    {
+                        Console.WriteLine("Ten kontener ma juz maksymalna liczbe konenterow! Operacja nie powiodla sie.");
+                        break;
+                    }
+                    try
+                    {
+                        kontenerowiecDo.Zaladuj(kontener);
+                        kontenerowiecZ.Kontenery.RemoveAt(indeksKontenera);
+                        Console.WriteLine("Pomyslnie przeniesiono kontener!");
+                    }
+                    catch (OverfillException)
+                    {
+                        Console.WriteLine("Operacja nie powiodla sie.");
+                    }
+                    break;
+                }
+                case "10":
+                {
+                    Console.WriteLine(kontenerowce);
+                    break;
+                }
+                case "11":
+                {
+                    Console.WriteLine(magazynKontenerow);
+                    break;
+                }
+                case "12": break;
                 default:
                 {
                     Console.WriteLine("Nie rozpoznano polecenia, prosze wpisac ponownie.");
