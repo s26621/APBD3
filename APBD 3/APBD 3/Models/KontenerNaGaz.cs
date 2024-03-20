@@ -8,6 +8,7 @@ public class KontenerNaGaz : Kontener, IHazardNotifier
     {
         this._cisnienie = cisnienie;
         rodzajKontenera = "G";
+        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
 
     public int Cisnienie

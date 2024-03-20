@@ -18,7 +18,6 @@ public abstract class Kontener
         this.glebokosc = glebokosc;
         this.maksLadownosc = maksLadownosc;
         masaLadunku = 0;
-        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
 
     public int Wysokosc
@@ -61,7 +60,7 @@ public abstract class Kontener
 
     public void Zaladuj()
     {
-        Console.WriteLine("Ile kg ladunku chcesz zaladowac? Aktualnie ten kontener moze pomiescic jeszcze"+(MaksLadownosc-MasaLadunku)+"kg.");
+        Console.WriteLine("Ile kg ladunku chcesz zaladowac? Aktualnie ten kontener moze pomiescic jeszcze "+(MaksLadownosc-MasaLadunku)+"kg.");
         int waga = int.Parse(Console.ReadLine());
         if (masaLadunku + waga> MaksLadownosc)
                 throw new OverfillException("Masa ladunku przekracza maksymalna pojemnosc! Nie zaladowano kontenera.");

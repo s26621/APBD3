@@ -17,6 +17,7 @@ public class KontenerChlodniczy : Kontener
         this.temperatura = temperatura;
         rodzajKontenera = "C";
         this.rodzajProduktu = rodzajProduktu;
+        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
 
     

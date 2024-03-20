@@ -1,4 +1,6 @@
-﻿namespace APBD_3;
+﻿using System.Text;
+
+namespace APBD_3;
 
 public class Kontenerowiec
 {
@@ -79,11 +81,23 @@ public class Kontenerowiec
         return temp;
     }
 
+    public string PokazKontenery()
+    {
+        StringBuilder sb = new StringBuilder("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        for (int i = 0; i < kontenery.Count; i++)
+        {
+            sb.Append(i).Append(" -> ").Append(kontenery[i]).Append('\n');
+        }
+
+        sb.Append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        return sb.ToString();
+    }
+
     public override string ToString()
     {
-        String s = "Kontenerowiec " + nazwa + " ma maksymalna predkosc "+maksymalnaPredkosc+" wezlow, " +
+        var s = "Kontenerowiec " + nazwa + " ma maksymalna predkosc "+maksymalnaPredkosc+" wezlow, " +
                    "aktualnie przewozi "+kontenery.Count + " kontenerow na maksymalne "+maksKontenery+" o wadze "+aktualnyUdzwig+"kg na maksymalne "+maksymalnyUdzwig+"kg.";
-        if(kontenery.Count > 0 ) return s + " Aktualnie przewozi nastepujace kontenery:" + kontenery;
+        //if(kontenery.Count > 0 ) return s + " Aktualnie przewozi nastepujace kontenery:" + PokazKontenery();
         return s;
     }
 
