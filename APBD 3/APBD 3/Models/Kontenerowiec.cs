@@ -39,7 +39,7 @@ public class Kontenerowiec
         {
             kontenery.Add(kontener);
             aktualnyUdzwig += (kontener.MasaKontenera + kontener.MasaLadunku) * 0.001;
-            Console.WriteLine("Pomyslnie zaladowano kontener"+kontener.Numer+"!");
+            Console.WriteLine("Pomyslnie zaladowano kontener "+kontener.Numer+"!");
         }
 
     }

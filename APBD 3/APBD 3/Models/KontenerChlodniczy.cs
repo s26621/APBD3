@@ -49,7 +49,7 @@ public class KontenerChlodniczy : Kontener
 
     public override string ToString()
     {
-        return base.ToString()+"Przewozi w srodku "+rodzajProduktu+".";
+        return base.ToString()+" Sluzy do przewozenia produktu "+rodzajProduktu+" i w srodku ma temeprature "+temperatura+" stopni.";
     }
 
     public string RodzajProduktu

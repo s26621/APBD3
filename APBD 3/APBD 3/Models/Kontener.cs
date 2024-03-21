@@ -96,7 +96,7 @@ public abstract class Kontener
     public override string ToString()
     {
         return "Kontener " + numer + " o wysokosci "+wysokosc+
-               "cm i glebokosci "+glebokosc+"cm. Ladunek = "+masaLadunku+"\\"+maksLadownosc+"kg";
+               "cm i glebokosci "+glebokosc+"cm. Ladunek = "+masaLadunku+"\\"+maksLadownosc+"kg.";
     }
 }
 

@@ -23,25 +23,24 @@ public class Program
                                    "1  ->  stworz kontener i umiesc w magazynie;\n" +
                                    "2  ->  usun kontener z magazynu;\n" +
                                    "3  ->  zaladuj ladunek do kontenera;";
-        string dostepnePolecenia2 = "4  ->  zaladuj kontener na statek\n;" +
+        string dostepnePolecenia2 = "4  ->  zaladuj kontener na statek;\n" +
                                     "5  ->  zaladuj wszystkie konenery na statek;\n" +
-                                    "6  ->  usun konener ze statku i umiesc w magazynie";
+                                    "6  ->  usun konener ze statku i umiesc w magazynie;";
         string dostepnePolecenia3 = "7  ->  rozladuj kontener w magazynie;\n" +
                                     "8  ->  zamien kontenery miejscami;\n" +
                                     "9  ->  przenies kontener na inny statek;";
         string dostepnePolecenia4 = "10 ->  wypisz informacje o statku;\n" +
                                     "11 ->  wyswietl liste kontenerow w magazynie;\n" +
-                                    "12 ->  wyjdz z programu.";
+                                    "12 ->  wyjdz z programu.\n";
         
                                     Console.WriteLine("\n##################\n\nWitamy w cokolwiek to jest! Masz do dyspozycji trzy kontenerowce: \n"+PokazKontenerowce());
         string polecenie;
+        Console.WriteLine(dostepnePolecenia1);
+        Console.WriteLine(dostepnePolecenia2);
+        Console.WriteLine(dostepnePolecenia3);
+        Console.WriteLine(dostepnePolecenia4);
         do
         {
-            Console.WriteLine(dostepnePolecenia1);
-            Console.WriteLine(dostepnePolecenia2);
-            Console.WriteLine(dostepnePolecenia3);
-            Console.WriteLine(dostepnePolecenia4);
-            
             polecenie = Console.ReadLine();
             switch (polecenie)
             {
@@ -142,7 +141,7 @@ public class Program
                         
                     }
                     Kontener? kontener1 = statek1.Wyladuj(indeks1);
-                    Console.WriteLine("Prosze podac indeks drugiego kontenerowca do zamiany.\n"+PokazKontenerowce());
+                    Console.WriteLine("Pierwszym kontenerem bedzie "+kontener1.Numer+". Prosze podac indeks drugiego kontenerowca do zamiany.\n"+PokazKontenerowce());
                     Kontenerowiec statek2 = kontenerowce[int.Parse(Console.ReadLine())];
                     
                     int indeks2;
@@ -160,7 +159,7 @@ public class Program
                     Kontener? kontener2 = statek2.Wyladuj(indeks2);
                     statek1.Kontenery.Insert(indeks1,kontener2);
                     statek2.Kontenery.Insert(indeks2,kontener1);
-                    Console.WriteLine("Pomyslnie zamieniono kontenery miejscami!");
+                    Console.WriteLine("Pomyslnie zamieniono kontenery "+kontener1.Numer+" i "+kontener2.Numer+" miejscami!");
                     break;
                 }
                 case "9":
@@ -207,13 +206,25 @@ public class Program
                     Console.WriteLine(PokazMagazyn());
                     break;
                 }
-                case "12": break;
+                case "12": {
+                    Console.WriteLine("Dziekujemy za skorzystanie z cokolwiek to jest!");
+                    break;
+                }
+                case "POMOC":
+                {
+                    Console.WriteLine(dostepnePolecenia1);
+                    Console.WriteLine(dostepnePolecenia2);
+                    Console.WriteLine(dostepnePolecenia3);
+                    Console.WriteLine(dostepnePolecenia4);
+                    break;
+                }
                 default:
                 {
                     Console.WriteLine("Nie rozpoznano polecenia, prosze wpisac ponownie.");
                     break;
                 }
             }
+            if(polecenie!="12") Console.WriteLine(">>>>>>>>>>>>>>   Prosze podac nastepne polecenie. Wpisz POMOC aby wyswietlic dostepne polecenia  <<<<<<<<<<<<<<\n");
         } while (polecenie != "12");
         
 
@@ -279,7 +290,7 @@ public class Program
 
     public static string PokazKontenerowce()
     {
-        StringBuilder sb = new StringBuilder("\n____________________________________________\n");
+        StringBuilder sb = new StringBuilder("\n____________________________________________\n\n");
         for (int i = 0; i < kontenerowce.Count; i++)
         {
             sb.Append(i +"-> "+kontenerowce[i]+'\n'+'\n');
