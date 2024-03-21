@@ -43,6 +43,24 @@ public class Kontenerowiec
         }
 
     }
+    
+    
+    public void ZaladujPrzygotowanie(Kontener kontener)
+    {
+        
+        // if (aktualnyUdzwig + (kontener.MasaKontenera + kontener.MasaLadunku)*0.001 > maksymalnyUdzwig)
+        // {
+        //     Console.WriteLine("Kontener przekroczyl maksymalny udzwig statku. " +
+        //                       "Aktualnie statek moze uniesc jeszcze "+(maksymalnyUdzwig-aktualnyUdzwig)+" ton. " +
+        //                       "Nie zaladowano kontenera");
+        //
+        // }
+        // else 
+        // {
+            kontenery.Add(kontener);
+            aktualnyUdzwig += (kontener.MasaKontenera + kontener.MasaLadunku) * 0.001;
+        //}
+    }
 
     public int Zaladuj(List<Kontener> kontenery)
     {
@@ -57,6 +75,7 @@ public class Kontenerowiec
         Console.WriteLine("Pomyslnie dodano "+ile+" na "+kontenery.Count+" kontenerow.");
         return ile;
     }
+    
 
     public Kontener Wyladuj(int ktory)
     {

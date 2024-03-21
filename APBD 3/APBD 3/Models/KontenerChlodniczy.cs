@@ -4,9 +4,9 @@ public class KontenerChlodniczy : Kontener
 {
     public static Dictionary<string, double> listaTemperatur = new Dictionary<string, double>()
     {
-        {"Bananas",13.3}, {"Chocolate",18}, {"Fish", 2}, 
-        {"Meat",-15}, {"Ice cream", -18}, {"Frozen pizza", -30},
-        {"Cheese", 7.2},{"Sausages", 5}, {"Butter", 20.5}, {"Eggs", 19}
+        {"Banany",13.3}, {"Czekolada",18}, {"Ryby", 2}, 
+        {"Mieso",-15}, {"Lody", -18}, {"Mrozona pizza", -30},
+        {"Ser", 7.2},{"Kielbasa", 5}, {"Maslo", 20.5}, {"Jajka", 19}
     };
   
     private string rodzajProduktu;
@@ -19,7 +19,14 @@ public class KontenerChlodniczy : Kontener
         this.rodzajProduktu = rodzajProduktu;
         numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
-
+    
+    public KontenerChlodniczy(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, double temperatura, string rodzajProduktu, int masaLadunku) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc, masaLadunku)
+    {
+        this.temperatura = temperatura;
+        rodzajKontenera = "C";
+        this.rodzajProduktu = rodzajProduktu;
+        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
+    }
     
     
     public void Zaladuj()

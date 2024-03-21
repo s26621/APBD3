@@ -19,6 +19,14 @@ public abstract class Kontener
         this.maksLadownosc = maksLadownosc;
         masaLadunku = 0;
     }
+    public Kontener(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, int masaLadunku)
+    {
+        this.masaLadunku = masaLadunku;
+        this.wysokosc = wysokosc;
+        this.masaKontenera = masaKontenera;
+        this.glebokosc = glebokosc;
+        this.maksLadownosc = maksLadownosc;
+    }
 
     public int Wysokosc
     {

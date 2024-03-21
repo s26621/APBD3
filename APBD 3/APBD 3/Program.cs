@@ -4,38 +4,26 @@ using Microsoft.VisualBasic.CompilerServices;
 
 public class Program
 {
-    public static Kontenerowiec[] kontenerowce;
+    public static List<Kontenerowiec> kontenerowce;
 
     public static List<Kontener> magazynKontenerow;
     public static void Main(string[] args)
     {
-        kontenerowce = new Kontenerowiec[3];
-        kontenerowce[0] = new Kontenerowiec(new List<Kontener>(), "Ksiezniczka", 20, 5, 17190);
-        kontenerowce[1] = new Kontenerowiec(new List<Kontener>(), "Evergreen", 5, 20, 45235);
-        kontenerowce[2] = new Kontenerowiec(new List<Kontener>(), "Syrenka", 15, 10, 28190);
+        kontenerowce = new List<Kontenerowiec>();
+        kontenerowce.Add(new Kontenerowiec(new List<Kontener>(), "Ksiezniczka", 20, 5, 27190));
+        kontenerowce.Add(new Kontenerowiec(new List<Kontener>(), "Evergreen", 5, 20, 100235));
+        kontenerowce.Add(new Kontenerowiec(new List<Kontener>(), "Syrenka", 15, 10, 50190));
 
         magazynKontenerow = new List<Kontener>();
-
-        // string dostepnePolecenia = "Oto dostepne polecenia:\n" +
-        //                    "1  ->  stworz kontener i umiesc w magazynie;\n" +
-        //                    "2  ->  usun kontener z magazynu;\n" +
-        //                    "3  ->  zaladuj ladunek do kontenera;\n" +
-        //                    "4  ->  zaladuj kontener na statek;\n" +
-        //                    "5  ->  zaladuj wszystkie konenery na statek;\n" +
-        //                    "6  ->  usun konener ze statku i umiesc w magazynie;\n" +
-        //                    "7  ->  rozladuj kontener w magazynie;\n" +
-        //                    "8  ->  zamien kontenery miejscami;\n" +
-        //                    "9  ->  przenies kontener na inny statek;\n" +
-        //                    "10 ->  wypisz informacje o statkach;\n" +
-        //                    "11 ->  wyswietl liste kontenerow w magazynie;\n" +
-        //                    "12 ->  wyjdz z programu.";
-        //
-
-        string dostepnePolecenia1 = "Oto dostepne polecenia:\n" +
+        
+        Przygotowanie();
+        
+        
+        string dostepnePolecenia1 = "\nOto dostepne polecenia:\n" +
                                    "1  ->  stworz kontener i umiesc w magazynie;\n" +
                                    "2  ->  usun kontener z magazynu;\n" +
                                    "3  ->  zaladuj ladunek do kontenera;";
-        string dostepnePolecenia2 = "4  ->  zaladuj kontener na statek;" +
+        string dostepnePolecenia2 = "4  ->  zaladuj kontener na statek\n;" +
                                     "5  ->  zaladuj wszystkie konenery na statek;\n" +
                                     "6  ->  usun konener ze statku i umiesc w magazynie";
         string dostepnePolecenia3 = "7  ->  rozladuj kontener w magazynie;\n" +
@@ -45,7 +33,7 @@ public class Program
                                     "11 ->  wyswietl liste kontenerow w magazynie;\n" +
                                     "12 ->  wyjdz z programu.";
         
-                                    Console.WriteLine("Witamy w cokolwiek to jest! Masz do dyspozycji trzy kontenerowce: \n"+PokazKontenerowce());
+                                    Console.WriteLine("\n##################\n\nWitamy w cokolwiek to jest! Masz do dyspozycji trzy kontenerowce: \n"+PokazKontenerowce());
         string polecenie;
         do
         {
@@ -85,7 +73,7 @@ public class Program
                     }
                     catch (OverfillException e)
                     {
-                        Console.WriteLine(e.Message+ " Operacja nie ppwiodla sie.");
+                        Console.WriteLine(e.Message+ " Operacja nie powiodla sie.");
                     }
                     break;
                 }
@@ -258,7 +246,7 @@ public class Program
                 case "3":
                 {
                     Console.WriteLine("Prosze podac rodzaj produktu ktore moze przewozic kontener z listy: \n"+
-                                      "Bananas, Chocolate, Fish, Meat, Ice cream, Frozen pizza, Cheese, Sausages, Butter, Eggs");
+                                      "Banany, Czekolada, Ryby, Mieso, Lody, Zamrozona pizza, Ser, Kielbasa, Maslo, Jajka");
                     string rodzajProduktu = Console.ReadLine();
                     while (!KontenerChlodniczy.listaTemperatur.ContainsKey(rodzajProduktu))
                     {
@@ -292,7 +280,7 @@ public class Program
     public static string PokazKontenerowce()
     {
         StringBuilder sb = new StringBuilder("\n____________________________________________\n");
-        for (int i = 0; i < kontenerowce.Length; i++)
+        for (int i = 0; i < kontenerowce.Count; i++)
         {
             sb.Append(i +"-> "+kontenerowce[i]+'\n'+'\n');
         }
@@ -311,10 +299,71 @@ public class Program
         sb.Append("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         return sb.ToString();
     }
+
+    public static void Przygotowanie()
+    {
+        /*
+         List<Kontener> kontenery, string nazwa, double maksymalnaPredkosc, int maksKontenery, int maksymalnyUdzwig
+         
+        kontenerowce[0] = new Kontenerowiec(new List<Kontener>(), "Ksiezniczka", 20, 5, 27190);
+        kontenerowce[1] = new Kontenerowiec(new List<Kontener>(), "Evergreen", 5, 20, 100235);
+        kontenerowce[2] = new Kontenerowiec(new List<Kontener>(), "Syrenka", 15, 10, 50190);
+        
+        {"Banany",13.3}, {"Czekolada",18}, {"Ryby", 2}, 
+        {"Mieso",-15}, {"Lody", -18}, {"Mrozona pizza", -30},
+        {"Ser", 7.2},{"Kielbasa", 5}, {"Maslo", 20.5}, {"Jajka", 19}
+        
+         */
+        kontenerowce[0].ZaladujPrzygotowanie(new KontenerChlodniczy(1000, 1500, 1600, 5000, 23, "Jajka", 4000));
+        kontenerowce[0].ZaladujPrzygotowanie(new KontenerNaGaz(1111, 1234, 1222, 3000, 2, 1000));
+        kontenerowce[0].ZaladujPrzygotowanie(new KontenerNaPlyny(1212, 1700, 1500, 10000, 5050));
+        kontenerowce[0].ZaladujPrzygotowanie(new KontenerNaPlyny(1412, 1450, 1520, 8000, 500));
+        kontenerowce[0].ZaladujPrzygotowanie(new KontenerNaGaz(2000, 1999, 2500, 6000, 1, 5000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaPlyny(1132, 1550, 1550, 8400, 1000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerChlodniczy(1000, 1500, 1600, 5000, 20, "Czekolada", 4000));
+        
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerChlodniczy(3000, 3000, 5000, 10000, 5, "Ryby",7777));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerChlodniczy(1300, 1401, 2000, 5400, 30, "Maslo",5400));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaPlyny(1132,1550,1550,8400,8000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(2300, 1800, 2560, 7000, 2, 5040));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(3000, 2222, 2500, 5890, 1, 4000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaNiebezpiecznePlyny(1000, 1250, 1650, 3000, 1300));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerChlodniczy(3000, 3000, 5000, 15000, 5, "Ryby",10000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(2000, 1999, 2500, 6000, 1, 5000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(3000, 2222, 2500, 5890, 1, 4000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerChlodniczy(3000, 3000, 5000, 8000, 9, "Ser",6000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaPlyny(1412, 1450, 1520, 8000, 500));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaPlyny(1432, 1750, 1560, 8507, 5030));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaPlyny(1122,1677,1140,8470,7000));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(1300, 1660, 2560, 7200, 2, 1040));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(3000, 2222, 2500, 5890, 1, 1500));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaNiebezpiecznePlyny(1020, 2220, 1650, 3056, 1560));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerChlodniczy(3020, 3030, 5500, 11000, -10, "Mrozona pizza",9007));
+        kontenerowce[1].ZaladujPrzygotowanie(new KontenerNaGaz(2010, 1499, 2010, 6000, 6, 5600));
+
+        kontenerowce[2].ZaladujPrzygotowanie(new KontenerNaPlyny(1472, 1650, 1520, 6000, 500));
+        kontenerowce[2].ZaladujPrzygotowanie(new KontenerNaGaz(2000, 1999, 2500, 6400, 1, 5000));
+        kontenerowce[2].ZaladujPrzygotowanie(new KontenerNaPlyny(1132, 1550, 1550, 8400, 1000));
+        kontenerowce[2].ZaladujPrzygotowanie(new KontenerChlodniczy(1500, 1500, 1600, 5200, 15, "Banany", 4050));
+
+
+        magazynKontenerow.Add(new KontenerNaPlyny(1500, 1650, 1520, 6000, 1500));
+        magazynKontenerow.Add(new KontenerNaGaz(2000, 2500, 3000, 7000, 2, 3000));
+        magazynKontenerow.Add(new KontenerChlodniczy(1000, 1700, 3000, 6000, -18, "Lody", 0));
+        magazynKontenerow.Add(new KontenerNaNiebezpiecznePlyny(1200, 2500, 1800, 4500, 2000));
+
+
+        
+    }
     
 }
 /*
 -> jak ładujemuy kontenery to nie musimy ich przestawiać, tylko masa ma się zgadzać
 -> termin do następnych zajęć
 -> repozytorium na githubie
+
+
+testowe dane:
+1000,1500,1500,5000
+
 */

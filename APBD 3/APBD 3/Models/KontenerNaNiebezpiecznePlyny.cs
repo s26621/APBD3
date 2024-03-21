@@ -7,6 +7,11 @@ public class KontenerNaNiebezpiecznePlyny : KontenerNaPlyny, IHazardNotifier
         rodzajKontenera = "CN";
         numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
+    public KontenerNaNiebezpiecznePlyny(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, int masaLadunku) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc, masaLadunku)
+    {
+        rodzajKontenera = "CN";
+        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
+    }
     public void Zaladuj(int waga)
     {
         if (masaLadunku + waga > maksLadownosc * 0.5)

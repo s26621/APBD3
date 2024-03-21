@@ -10,6 +10,12 @@ public class KontenerNaGaz : Kontener, IHazardNotifier
         rodzajKontenera = "G";
         numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
     }
+    public KontenerNaGaz(int wysokosc, int masaKontenera, int glebokosc, int maksLadownosc, int cisnienie, int masaLadunku) : base(wysokosc, masaKontenera, glebokosc, maksLadownosc, masaLadunku)
+    {
+        this._cisnienie = cisnienie;
+        rodzajKontenera = "G";
+        numer = "KON-"+rodzajKontenera+"-"+ktoryKontener++;
+    }
 
     public int Cisnienie
     {
